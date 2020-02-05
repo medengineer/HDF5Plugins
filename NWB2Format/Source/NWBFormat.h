@@ -36,6 +36,7 @@ namespace NWBRecording
 	public:
 		ScopedPointer<HDF5RecordingData> baseDataSet;
 		ScopedPointer<HDF5RecordingData> timestampDataSet;
+		ScopedPointer<HDF5RecordingData> electrodeDataSet;
 		ScopedPointer<HDF5RecordingData> controlDataSet; //for all but spikes
 		ScopedPointer<HDF5RecordingData> ttlWordDataSet; //just for ttl events
 		OwnedArray<HDF5RecordingData> metaDataSet;
@@ -69,9 +70,10 @@ namespace NWBRecording
 		static HDF5FileBase::BaseDataType getEventH5Type(EventChannel::EventChannelTypes type, int length = 1);
 		static HDF5FileBase::BaseDataType getMetaDataH5Type(MetaDataDescriptor::MetaDataTypes type, int length = 1);
 
-		bool createTimeSeriesBase(String basePath, String source, String helpText, String description, StringArray ancestry);
+		bool createTimeSeriesBase(String basePath, String description, String neurodata_type);
 		bool createExtraInfo(String basePath, String name, String desc, String id, uint16 index, uint16 typeIndex);
 		HDF5RecordingData* createTimestampDataSet(String basePath, int chunk_size);
+		HDF5RecordingData* createElectrodeDataSet(String basePath, String description, int chunk_size);
 		void createDataAttributes(String basePath, float conversion, float resolution, String unit);
 		bool createChannelMetaDataSets(String basePath, const MetaDataInfoObject* info);
 		bool createEventMetaDataSets(String basePath, TimeSeries* timeSeries, const MetaDataEventObject* info);
