@@ -218,10 +218,12 @@ bool NWBFile::startNewRecording(int recordingNumber, const Array<ContinuousGroup
 		if (dSet == nullptr) return false;
 		tsStruct->timestampDataSet = dSet;
 
+		/*
 		basePath = basePath + "/oe_extra_info";
 		createExtraInfo(basePath, info->getName(), info->getDescription(), info->getIdentifier(), info->getSourceIndex(), info->getSourceTypeIndex());
 		createChannelMetaDataSets(basePath + "/channel_metadata", info);
 		createEventMetaDataSets(basePath + "/spike_metadata", tsStruct, info);
+		*/
 
 		spikeDataSets.add(tsStruct.release());
 
@@ -312,10 +314,12 @@ bool NWBFile::startNewRecording(int recordingNumber, const Array<ContinuousGroup
 			tsStruct->ttlWordDataSet = dSet;
 		}
 
+		/*
 		basePath = basePath + "/oe_extra_info";
 		createExtraInfo(basePath, info->getName(), info->getDescription(), info->getIdentifier(), info->getSourceIndex(), info->getSourceTypeIndex());
 		createChannelMetaDataSets(basePath + "/channel_metadata", info);
 		createEventMetaDataSets(basePath + "/event_metadata", tsStruct, info);
+		*/
 		eventDataSets.add(tsStruct.release());
 
 	}
