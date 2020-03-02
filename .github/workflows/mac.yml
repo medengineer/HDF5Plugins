@@ -18,6 +18,8 @@ jobs:
       run: |
         curl -o install.pkg https://distfiles.macports.org/MacPorts/MacPorts-2.6.2-10.15-Catalina.pkg
         sudo installer -pkg install.pkg -target /
+        ls /opt
+        export PATH=/opt/local/bin:$PATH
         git clone --single-branch https://github.com/macports/macports-ports.git
         cd macports-ports
         git checkout 461781b947cdc9f942d2e963e8d25e58cc7b93ca
