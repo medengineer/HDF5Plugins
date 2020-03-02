@@ -15,14 +15,14 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install MacPorts
-      uses: medengineer/actions/setup-macports@setup-macports/releases/v1
-    - name: Install hdf5-18
       run: |
+        curl -o install.pkg https://distfiles.macports.org/MacPorts/MacPorts-2.6.2-10.15-Catalina.pkg
+        sudo installer -pkg install.pkg -target /
         git clone --single-branch https://github.com/macports/macports-ports.git
         cd macports-ports
         git checkout 461781b947cdc9f942d2e963e8d25e58cc7b93ca
         cd science/hdf5-18
-        sudo port install
+        port install
     - name: setup
       run: |
         cd ..
