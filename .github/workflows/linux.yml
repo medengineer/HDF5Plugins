@@ -37,6 +37,8 @@ jobs:
         export CPLUS_INCLUDE_PATH=/usr/local/hdf5/include
         export LIBRARY_PATH=/usr/local/hdf5/lib
         export LD_LIBRARY_PATH=/usr/local/hdf5/lib
+        sudo echo 'CPLUS_INCLUDE_PATH="/usr/local/hdf5/include"' >> /etc/environment
+        sudo echo 'LIBRARY_PATH="/usr/local/hdf5/lib"' >> /etc/environment
         export CC=gcc-8
         export CXX=g++-8
         cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
