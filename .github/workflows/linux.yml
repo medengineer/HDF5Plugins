@@ -56,8 +56,8 @@ jobs:
         package: ${{ github.event.repository.name }}-linux
       run: |
         plugin_api=$(grep -rnw ../plugin-GUI/Source -e '#define PLUGIN_API_VER' | grep -Eo "[0-9]*" | tail -1)
-        new_plugin_ver=$tag-API$plugin_api
         tag=$(git describe --tags $(git rev-list --tags --max-count=1))
+        new_plugin_ver=$tag-API$plugin_api
         mkdir plugins
         if [[ $(ls $build_dir/*/*.so) ]]; then
             cp -r $build_dir/*/*.so plugins
