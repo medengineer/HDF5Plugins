@@ -41,7 +41,7 @@ jobs:
         export LD_LIBRARY_PATH=/usr/local/hdf5/lib
         export CC=gcc-8
         export CXX=g++-8
-        export PATH=$PATH:/usr/local/hdf5/include
+        export PATH=$PATH:/usr/local/hdf5/include:/usr/local/hdf5/lib
         export 
         cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
         make
