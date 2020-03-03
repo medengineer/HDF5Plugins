@@ -51,7 +51,7 @@ jobs:
         repo: ${{ github.event.repository.name }}
         package: ${{ github.event.repository.name }}-windows
       run: |
-        plugin_api=$(grep -rnw ../../plugin-GUI/Source -e '#define PLUGIN_API_VER' | grep -Eo "[0-9]*" | tail -1)
+        plugin_api=$(grep -rnw ../plugin-GUI/Source -e '#define PLUGIN_API_VER' | grep -Eo "[0-9]*" | tail -1)
         tag=$(git describe --tags $(git rev-list --tags --max-count=1))
         new_plugin_ver=$tag-API$plugin_api
         mkdir plugins

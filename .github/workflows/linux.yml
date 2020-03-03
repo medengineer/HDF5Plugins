@@ -18,6 +18,8 @@ jobs:
       run: |
         curl https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.20/src/hdf5-1.8.20.tar.gz | tar xvz
         cd hdf5-1.8.20
+        export CC=gcc-8
+        export CXX=g++-8
         ./configure --prefix=/usr/local/hdf5 --enable-cxx
         make 
         sudo make install
@@ -37,10 +39,10 @@ jobs:
         export CPLUS_INCLUDE_PATH=/usr/local/hdf5/include
         export LIBRARY_PATH=/usr/local/hdf5/lib
         export LD_LIBRARY_PATH=/usr/local/hdf5/lib
-        sudo echo 'CPLUS_INCLUDE_PATH="/usr/local/hdf5/include"' >> /etc/environment
-        sudo echo 'LIBRARY_PATH="/usr/local/hdf5/lib"' >> /etc/environment
         export CC=gcc-8
         export CXX=g++-8
+        export PATH=$PATH:/usr/local/hdf5/include
+        export 
         cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
         make
 #    - name: test
@@ -53,7 +55,7 @@ jobs:
         repo: ${{ github.event.repository.name }}
         package: ${{ github.event.repository.name }}-linux
       run: |
-        plugin_api=$(grep -rnw ../../plugin-GUI/Source -e '#define PLUGIN_API_VER' | grep -Eo "[0-9]*" | tail -1)
+        plugin_api=$(grep -rnw ../plugin-GUI/Source -e '#define PLUGIN_API_VER' | grep -Eo "[0-9]*" | tail -1)
         new_plugin_ver=$tag-API$plugin_api
         tag=$(git describe --tags $(git rev-list --tags --max-count=1))
         mkdir plugins

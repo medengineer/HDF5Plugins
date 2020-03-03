@@ -99,7 +99,7 @@ if (APPLE) #this is needed by the unorthodox way hdf5 version 18 is installed
 	set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH};/opt/local/lib/hdf5-18)
 endif()
 #additional libraries needed
-find_package(HDF5 1.8 EXACT COMPONENTS CXX)
+find_package(HDF5 1.8 COMPONENTS CXX)
 if(NOT HDF5_FOUND) #if package finding fails, try manually
 #unset variables in case a wrong version has been found
 unset(HDF5_LIBRARIES)
