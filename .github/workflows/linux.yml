@@ -20,16 +20,12 @@ jobs:
         cd hdf5-1.8.20
         ./configure --prefix=/usr/local/hdf5 --enable-cxx
         make 
-        make check
         sudo make install
     - name: setup
       run: |
-        sudo apt update
-        export CPLUS_INCLUDE_PATH=/usr/local/hdf5/include
-        export LIBRARY_PATH=/usr/local/hdf5/lib
-        export LD_LIBRARY_PATH=/usr/local/hdf5/lib
         export CC=gcc-8
         export CXX=g++-8
+        sudo apt update
         cd ..
         git clone https://github.com/open-ephys/plugin-GUI.git
         cd plugin-GUI/Build && cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
@@ -38,6 +34,11 @@ jobs:
     - name: build
       run: |
         cd Build
+        export CPLUS_INCLUDE_PATH=/usr/local/hdf5/include
+        export LIBRARY_PATH=/usr/local/hdf5/lib
+        export LD_LIBRARY_PATH=/usr/local/hdf5/lib
+        export CC=gcc-8
+        export CXX=g++-8
         cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release ..
         make
 #    - name: test
